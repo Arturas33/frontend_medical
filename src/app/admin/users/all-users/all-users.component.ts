@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../../user.interface';
-import {UserServies} from '../../../user.servies';
+import {UserServics} from '../../../user.servics';
 import {Response} from '@angular/http';
 
 @Component({
@@ -12,7 +12,7 @@ export class AllUsersComponent implements OnInit {
 
     users: User[];
 
-    constructor(private userService: UserServies) {
+    constructor(private userService: UserServics) {
     }
 
     ngOnInit() {
