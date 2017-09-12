@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../../user.interface';
-import {UserServics} from '../../../user.servics';
+import {UserService} from '../../../user.services';
 import {Response} from '@angular/http';
 
 @Component({
@@ -12,17 +12,21 @@ export class AllUsersComponent implements OnInit {
 
     users: User[];
 
-    constructor(private userService: UserServics) {
+    constructor(private userService: UserService) {
     }
 
     ngOnInit() {
-    }
-
-    onGetUsers() {
         this.userService.getUsers().subscribe(
             (users: User[]) => this.users = users,
             (error: Response) => console.log(error)
         );
+    }
+
+    delete(id: any) {
+        var result = confirm('Are you sure?');
+        if (result) {
+            this.userService.deleteUser(id);
+        }
     }
 
 }
