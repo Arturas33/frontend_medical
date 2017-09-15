@@ -10,6 +10,10 @@ import {AdminModule} from './admin/admin.module';
 import {adminRouting} from './admin/admin.routing';
 import {UsersModule} from './admin/users/users.module';
 import {usersRouting} from './admin/users/users.routing';
+import {PostsModule} from './admin/posts/posts.module';
+import {postsRouting} from './admin/posts/posts.routing';
+import {RolesModule} from './admin/roles/roles.module';
+import {rolesRouting} from './admin/roles/roles.routing';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import {usersRouting} from './admin/users/users.routing';
       adminRouting,
       ReactiveFormsModule,
       UsersModule,
-      usersRouting
+      usersRouting,
+      PostsModule,
+      postsRouting,
+      RolesModule,
+      rolesRouting,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,13 +2,13 @@ import {Injectable} from '@angular/core';
 import {Http, Response, Headers} from '@angular/http';
 import 'rxjs/Rx';
 import {Observable} from 'rxjs';
-import {AuthService} from './admin/auth.service';
-import {Post} from './post.interface';
+import {AuthService} from '../../auth.service';
+import {Post} from './post';
 
 
 
 @Injectable()
-export class PostService {
+export class PostsService {
     constructor(private http: Http, private authService: AuthService) {
 
     }
@@ -20,17 +20,10 @@ export class PostService {
         });
     }
 
-    createPost(user_id: string,
-               title: string,
-               text: string) {
+    createPost(post) {
         const token = this.authService.getToken();
         return this.http.post('http://becms.dev/api/posts?token=' + token,
-            {
-                user_id: user_id,
-                title: title,
-                text: text,
-
-            },
+            post,
             {headers: new Headers({'X-Requested-With': 'XMLHttpRequest'})}
         ).map(
             (response: Response) => {
@@ -39,20 +32,10 @@ export class PostService {
         );
     }
 
-    getPost(id: any): Observable<any> {
-        const token = this.authService.getToken();
-        return this.http.get('http://becms.dev/api/posts/' + id + '?token=' + token)
-            .map(
-                (response: Response) => {
-                    return response.json().post;
-                }
-            );
-    }
-
-    updatePost(post: Post) {
+    updatePost(post) {
         const token = this.authService.getToken();
         return this.http.put('http://becms.dev/api/posts/' + post.id + '?token=' + token,
-            JSON.stringify(post),
+            post,
             {headers: new Headers({'Content-type': 'application/json'})}
         ).map(
             (response: Response) => response.json()
@@ -64,4 +47,13 @@ export class PostService {
         return this.http.delete('http://becms.dev/api/posts/' + id + '?token=' + token);
     }
 
+    getPost(id: any): Observable<any> {
+        const token = this.authService.getToken();
+        return this.http.get('http://becms.dev/api/posts/' + id + '?token=' + token)
+            .map(
+                (response: Response) => {
+                    return response.json().post;
+                }
+            );
+    }
 }

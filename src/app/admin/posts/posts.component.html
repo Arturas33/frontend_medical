@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Display {{ posts.length }} <b>post(s).</b></h4>
+        <div class="add-button-top pull-right">
+            <button type="button" class="btn btn-default" routerLink="/admin/posts/new" name="button">Add post</button>
+        </div>
+    </div>
+    <div class="panel-body">
+        <!--&lt;!&ndash;<button type="button" (click)="onGetUsers()" name="button" class="btn btn-default">Get Users</button>&ndash;&gt;-->
+        <!--<app-user *ngFor="let user of users" [user]="user"></app-user>-->
+        <!--</div>-->
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Text</th>
+            </tr>
+            <tr *ngFor="let post of posts">
+                <td>{{post.id}}</td>
+                <td>{{post.title}}</td>
+                <td>{{post.text}}</td>
+                <td><button [routerLink]="['/admin/posts', post.id]">Edit</button> |
+                    <button (click)="onDelete(post)">Delete</button>
+                </td>
+        </table>
+    </div>
+</div>

@@ -10,6 +10,8 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AuthService} from './auth.service';
 import {AuthGuardService} from './auth-guard.service';
 import {CommonModule} from '@angular/common';
+import { PostFormComponent } from './posts/post-form/post-form.component';
+
 
 
 @NgModule({
