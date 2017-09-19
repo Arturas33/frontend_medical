@@ -13,7 +13,7 @@ export class RolesService {
 
     }
 
-    getPosts(): Observable<any> {
+    getRoles(): Observable<any> {
         const token = this.authService.getToken();
         return this.http.get('http://becms.dev/api/roles?token=' + token).map((response: Response) => {
             return response.json().roles;

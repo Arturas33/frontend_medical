@@ -18,7 +18,7 @@ export class RolesComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.rolesService.getPosts().subscribe(
+        this.rolesService.getRoles().subscribe(
             roles => this.roles = roles,
             (error: Response) => console.log(error)
         );

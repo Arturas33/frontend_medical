@@ -14,12 +14,18 @@ import {PostsModule} from './admin/posts/posts.module';
 import {postsRouting} from './admin/posts/posts.routing';
 import {RolesModule} from './admin/roles/roles.module';
 import {rolesRouting} from './admin/roles/roles.routing';
+import { BlogComponent } from './blog/blog.component';
+import { MenuNavBarFrontendComponent } from './menu-nav-bar-frontend/menu-nav-bar-frontend.component';
+import { BlogPostComponent } from './blog/blog-post/blog-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    BlogComponent,
+    MenuNavBarFrontendComponent,
+    BlogPostComponent
   ],
   imports: [
     BrowserModule,
