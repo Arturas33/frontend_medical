@@ -1,9 +1,8 @@
-
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Post} from '../shared/post';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PostsService} from '../shared/posts.service';
+import {Post} from '../shared/post';
 
 @Component({
     selector: 'app-post-form',
@@ -12,10 +11,10 @@ import {PostsService} from '../shared/posts.service';
 })
 export class PostFormComponent implements OnInit {
 
+
     form: FormGroup;
     title: string;
     post: Post = new Post();
-    showPassword: boolean;
 
     constructor(formBuilder: FormBuilder,
                 private router: Router,
@@ -29,15 +28,13 @@ export class PostFormComponent implements OnInit {
             text: ['', [
                 Validators.required,
                 Validators.minLength(3)
-            ]],
+            ]]
         });
     }
 
-
-
     ngOnInit() {
-        const id = this.activatedRoute.params.subscribe(params => {
-            const id = params['id'];
+        var id = this.activatedRoute.params.subscribe(params => {
+            var id = params['id'];
             this.title = id ? 'Edit Post' : 'New Post';
 
             if (!id)
@@ -53,7 +50,6 @@ export class PostFormComponent implements OnInit {
         });
 
         if (this.router.url === '/admin/posts/new') {
-            this.showPassword = true;
         }
     }
 

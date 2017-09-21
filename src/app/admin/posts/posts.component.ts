@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-
 import {Response} from '@angular/http';
-
-import {PostsService} from './shared/posts.service';
 import {Post} from './shared/post';
+import {PostsService} from './shared/posts.service';
 
 @Component({
     selector: 'app-posts',
@@ -12,9 +10,10 @@ import {Post} from './shared/post';
 })
 export class PostsComponent implements OnInit {
 
-    private posts: Post[] = [];
+    posts: Post[] = [];
 
     constructor(private postsService: PostsService) {
+
     }
 
     ngOnInit() {
@@ -32,7 +31,7 @@ export class PostsComponent implements OnInit {
             this.postsService.deletePost(post.id)
                 .subscribe(null,
                     error => {
-                        alert('could not delete user.');
+                        alert('could not delete post.');
                         this.posts.splice(index, 0, post);
                     });
         }

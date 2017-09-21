@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-
 import {Response} from '@angular/http';
-
-import {RolesService} from './shared/roles.service';
 import {Role} from './shared/role';
+import {RolesService} from './shared/roles.service';
 
 @Component({
     selector: 'app-roles',
@@ -12,9 +10,10 @@ import {Role} from './shared/role';
 })
 export class RolesComponent implements OnInit {
 
-    private roles: Role[] = [];
+    roles: Role[] = [];
 
     constructor(private rolesService: RolesService) {
+
     }
 
     ngOnInit() {
@@ -24,18 +23,21 @@ export class RolesComponent implements OnInit {
         );
     }
 
+
     onDelete(role) {
         if (confirm('Are you sure you want to delete ' + role.name + '?')) {
             const index = this.roles.indexOf(role);
             this.roles.splice(index, 1);
 
-            this.rolesService.deletePost(role.id)
+            this.rolesService.deleteRole(role.id)
                 .subscribe(null,
                     error => {
-                        alert('could not delete user.');
+                        alert('could not delete post.');
                         this.roles.splice(index, 0, role);
                     });
         }
     }
-
 }
+
+
+

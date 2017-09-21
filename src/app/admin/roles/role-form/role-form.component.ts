@@ -1,9 +1,9 @@
-
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Role} from '../shared/role';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RolesService} from '../shared/roles.service';
+
 
 @Component({
     selector: 'app-role-form',
@@ -15,7 +15,6 @@ export class RoleFormComponent implements OnInit {
     form: FormGroup;
     title: string;
     role: Role = new Role();
-    showPassword: boolean;
 
     constructor(formBuilder: FormBuilder,
                 private router: Router,
@@ -29,11 +28,9 @@ export class RoleFormComponent implements OnInit {
         });
     }
 
-
-
     ngOnInit() {
-        const id = this.activatedRoute.params.subscribe(params => {
-            const id = params['id'];
+        var id = this.activatedRoute.params.subscribe(params => {
+            var id = params['id'];
             this.title = id ? 'Edit Role' : 'New Role';
 
             if (!id)
@@ -49,7 +46,6 @@ export class RoleFormComponent implements OnInit {
         });
 
         if (this.router.url === '/admin/roles/new') {
-            this.showPassword = true;
         }
     }
 
@@ -64,10 +60,9 @@ export class RoleFormComponent implements OnInit {
         }
 
         result.subscribe(
-            post => this.router.navigate(['admin/roles']),
+            role => this.router.navigate(['admin/roles']),
             error => console.log(error)
         );
     }
-
 
 }

@@ -3,8 +3,6 @@ import {Http, Response, Headers} from '@angular/http';
 import 'rxjs/Rx';
 import {Observable} from 'rxjs';
 import {AuthService} from '../../auth.service';
-import {Role} from './role';
-
 
 
 @Injectable()
@@ -15,14 +13,14 @@ export class RolesService {
 
     getRoles(): Observable<any> {
         const token = this.authService.getToken();
-        return this.http.get('http://becms.dev/api/roles?token=' + token).map((response: Response) => {
+        return this.http.get('http://medicback.dev/api/roles?token=' + token).map((response: Response) => {
             return response.json().roles;
         });
     }
 
     createRole(role) {
         const token = this.authService.getToken();
-        return this.http.post('http://becms.dev/api/roles?token=' + token,
+        return this.http.post('http://medicback.dev/api/roles?token=' + token,
             role,
             {headers: new Headers({'X-Requested-With': 'XMLHttpRequest'})}
         ).map(
@@ -34,7 +32,7 @@ export class RolesService {
 
     updateRole(role) {
         const token = this.authService.getToken();
-        return this.http.put('http://becms.dev/api/roles/' + role.id + '?token=' + token,
+        return this.http.put('http://medicback.dev/api/roles/' + role.id + '?token=' + token,
             role,
             {headers: new Headers({'Content-type': 'application/json'})}
         ).map(
@@ -42,14 +40,14 @@ export class RolesService {
         );
     }
 
-    deletePost(id: any) {
+    deleteRole(id: any) {
         const token = this.authService.getToken();
-        return this.http.delete('http://becms.dev/api/roles/' + id + '?token=' + token);
+        return this.http.delete('http://medicback.dev/api/roles/' + id + '?token=' + token);
     }
 
     getRole(id: any): Observable<any> {
         const token = this.authService.getToken();
-        return this.http.get('http://becms.dev/api/roles/' + id + '?token=' + token)
+        return this.http.get('http://medicback.dev/api/roles/' + id + '?token=' + token)
             .map(
                 (response: Response) => {
                     return response.json().role;

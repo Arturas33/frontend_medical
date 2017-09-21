@@ -7,16 +7,15 @@
       <form [formGroup]="form" (ngSubmit)="onSave(f)" #f="ngForm">
         <div class="form-group">
           <label for="title">Title</label>
-          <input class="form-control" type="text" name="title" id="title"  [(ngModel)]="post.title" formControlName="title">
+          <input type="text" name="title" id="title" class="form-control" [(ngModel)]="post.title" formControlName="title">
         </div>
         <div class="form-group">
           <label for="text">Text</label>
-          <input type="text" name="text" id="text" class="form-control" [(ngModel)]="post.text" formControlName="text">
+          <textarea  type="textarea" name="text" id="text" class="form-control" [(ngModel)]="post.text" formControlName="text"></textarea>
         </div>
-
         <div class="form-group">
           <button type="submit" class="btn btn-success"
-                  name="button" >{{title}}</button>
+                  name="button">{{title}}</button>
         </div>
       </form>
     </div>

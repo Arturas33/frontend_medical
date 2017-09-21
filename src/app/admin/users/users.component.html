@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4>Display {{ users.length }} <b>user(s).</b></h4>
+        <h4>Display {{ users.lenght }} <b>user(s).</b></h4>
         <div class="add-button-top pull-right">
             <button type="button" class="btn btn-default" routerLink="/admin/users/new" name="button">Add user</button>
         </div>
@@ -12,23 +12,21 @@
         <table class="table">
             <tr>
                 <th>ID</th>
+                <th>Role</th>
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Email</th>
                 <th>Position</th>
-                <th>Role</th>
                 <th>Actions</th>
             </tr>
             <tr *ngFor="let user of users">
                 <td>{{user.id}}</td>
+                <!--<td >{{user.roles[0].name}}</td> show first role -->
+                <td><span *ngFor="let role of user.roles, let isLast=last">{{role.name}}{{isLast ? '' : ', '}}</span></td>
                 <td>{{user.first_name}}</td>
                 <td>{{user.last_name}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.position}}</td>
-                <td>
-                    <!--{{user.roles[0].name}} -->
-                    <span *ngFor="let role of user.roles, let isLast=last">{{role.name}}{{isLast ? '' : ','}}</span>
-                </td>
                 <td><button [routerLink]="['/admin/users', user.id]">Edit</button> |
                   <button (click)="onDelete(user)">Delete</button>
                 </td>

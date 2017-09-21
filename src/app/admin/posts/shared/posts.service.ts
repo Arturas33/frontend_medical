@@ -15,14 +15,14 @@ export class PostsService {
 
     getPosts(): Observable<any> {
         const token = this.authService.getToken();
-        return this.http.get('http://becms.dev/api/posts?token=' + token).map((response: Response) => {
+        return this.http.get('http://medicback.dev/api/posts?token=' + token).map((response: Response) => {
             return response.json().posts;
         });
     }
 
     createPost(post) {
         const token = this.authService.getToken();
-        return this.http.post('http://becms.dev/api/posts?token=' + token,
+        return this.http.post('http://medicback.dev/api/posts?token=' + token,
             post,
             {headers: new Headers({'X-Requested-With': 'XMLHttpRequest'})}
         ).map(
@@ -34,7 +34,7 @@ export class PostsService {
 
     updatePost(post) {
         const token = this.authService.getToken();
-        return this.http.put('http://becms.dev/api/posts/' + post.id + '?token=' + token,
+        return this.http.put('http://medicback.dev/api/posts/' + post.id + '?token=' + token,
             post,
             {headers: new Headers({'Content-type': 'application/json'})}
         ).map(
@@ -44,12 +44,12 @@ export class PostsService {
 
     deletePost(id: any) {
         const token = this.authService.getToken();
-        return this.http.delete('http://becms.dev/api/posts/' + id + '?token=' + token);
+        return this.http.delete('http://medicback.dev/api/posts/' + id + '?token=' + token);
     }
 
     getPost(id: any): Observable<any> {
         const token = this.authService.getToken();
-        return this.http.get('http://becms.dev/api/posts/' + id + '?token=' + token)
+        return this.http.get('http://medicback.dev/api/posts/' + id + '?token=' + token)
             .map(
                 (response: Response) => {
                     return response.json().post;

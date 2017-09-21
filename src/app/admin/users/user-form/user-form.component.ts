@@ -3,10 +3,10 @@ import {FormBuilder, FormGroup, Validators, FormsModule} from '@angular/forms';
 import {User} from '../shared/user';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UsersService} from '../shared/users.service';
-import {RolesService} from '../../roles/shared/roles.service';
 import {Role} from '../../roles/shared/role';
+import {RolesService} from '../../roles/shared/roles.service';
 
-import {MultiselectDropdownModule} from 'angular-2-dropdown-multiselect';
+import {IMultiSelectOption} from 'angular-2-dropdown-multiselect';
 
 @Component({
     selector: 'app-user-form',
@@ -20,7 +20,6 @@ export class UserFormComponent implements OnInit {
     user: User = new User();
     userRoles: string[] = [];
     roles: Role[] = [];
-
     showPassword: boolean;
 
     constructor(formBuilder: FormBuilder,
@@ -51,14 +50,12 @@ export class UserFormComponent implements OnInit {
         });
     }
 
-    // kai uzsikrauna komponentas (konstruktorius suveikia pirmas, sitas antroj stadijoj) kviecia componento funkcija
 
     ngOnInit() {
         this.rolesService.getRoles().subscribe(
             roles => this.roles = roles,
             (error: Response) => console.log(error)
         );
-
 
         var id = this.activatedRoute.params.subscribe(params => {
             var id = params['id'];
@@ -74,11 +71,14 @@ export class UserFormComponent implements OnInit {
                         this.userRoles.push(this.user.roles[i].id.toString());
                     }
                 },
+                // role => this.role = role,
                 response => {
                     if (response.status === 404) {
                         this.router.navigate(['NotFound']);
                     }
+
                 });
+
         });
 
         if (this.router.url === '/admin/users/new') {
@@ -86,24 +86,25 @@ export class UserFormComponent implements OnInit {
         }
     }
 
-    onChange(event: any) {}
-
-onSave()
-{
-    var result = this.form.value;
-    var user = this.form.value;
-    if (this.user.id) {
-        user.id = this.user.id;
-        result = this.usersService.updateUser(user);
-    } else {
-        result = this.usersService.createUser(user);
+    onChange(e: any) {
+        console.log(e);
     }
 
-    result.subscribe(
-        user => this.router.navigate(['admin/users']),
-        error => console.log(error)
-    );
-}
+    onSave() {
+        var result = this.form.value;
+        var user = this.form.value;
+        if (this.user.id) {
+            user.id = this.user.id;
+            result = this.usersService.updateUser(user);
+        } else {
+            result = this.usersService.createUser(user);
+        }
+
+        result.subscribe(
+            user => this.router.navigate(['admin/users']),
+            error => console.log(error)
+        );
+    }
 
 
 }

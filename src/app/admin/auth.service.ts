@@ -3,16 +3,20 @@ import {Http, Headers, Response} from '@angular/http';
 import 'rxjs/Rx';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
+import {tokenNotExpired} from 'angular2-jwt';
 
 
 @Injectable()
 export class AuthService {
+
+    result: Array<Object>;
+
     constructor(private http: Http, private router: Router) {
 
     }
 
     signin(email: string, password: string) {
-        return this.http.post('http://becms.dev/api/users/signin',
+        return this.http.post('http://medicback.dev/api/users/signin',
             {email: email, password: password},
             {headers: new Headers({'X-Requested-With': 'XMLHttpRequest'})}
         ).map(
@@ -35,11 +39,20 @@ export class AuthService {
         return localStorage.getItem('token');
     }
 
+    // url: string = 'http://medicback.dev/api ;
+
     isLoggedIn() {
-        if (localStorage.getItem('token')) {
-            return true;
-        }
-        return false;
+        // this.http.get('http://medicback.dev/api/users/logged-in?token=' + this.getToken())
+        //     .map(response => response.json())
+        //     .subscribe(result => this.result = result);
+        // if (this.result) {
+        //     return true;
+        // } else {
+        //     localStorage.removeItem('token');
+        //     return false;
+        // }
+
+        return tokenNotExpired();
     }
 
     logout() {
