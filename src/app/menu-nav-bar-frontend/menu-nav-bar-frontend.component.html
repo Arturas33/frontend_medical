@@ -19,7 +19,9 @@
                     <a routerLink="/about"> About </a>
                 </li>
 
-                <li><a href="#Contact">Contact</a></li>
+                <li [routerLinkActive]="['active']">
+                    <a routerLink="/blog">Contact</a>
+                </li>
 
                 <li [routerLinkActive]="['active']">
                     <a routerLink="/blog"> Blog </a>

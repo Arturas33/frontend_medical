@@ -4,9 +4,12 @@ import {Response} from '@angular/http';
 
 import {UsersService} from './shared/users.service';
 import {User} from './shared/user';
+import {fadeInAnimation} from '../../animations/animate'
 
 @Component({
     selector: 'app-users',
+    animations: [fadeInAnimation],
+    host: {'[@fadeInAnimation]' : ''},
     templateUrl: './users.component.html',
     styleUrls: ['./users.component.css']
 })

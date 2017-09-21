@@ -27,9 +27,13 @@
                 <td>{{user.last_name}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.position}}</td>
-                <td><button [routerLink]="['/admin/users', user.id]">Edit</button> |
+                <td><button [routerLink]="['edit',  user.id]">Edit</button> |
                   <button (click)="onDelete(user)">Delete</button>
                 </td>
         </table>
     </div>
+</div>
+
+<div class="view-side-form">
+    <router-outlet></router-outlet>
 </div>

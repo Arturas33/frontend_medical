@@ -16,7 +16,7 @@ export class AuthService {
     }
 
     signin(email: string, password: string) {
-        return this.http.post('http://medicback.dev/api/users/signin',
+        return this.http.post('http://becms.dev/api/users/signin',
             {email: email, password: password},
             {headers: new Headers({'X-Requested-With': 'XMLHttpRequest'})}
         ).map(
