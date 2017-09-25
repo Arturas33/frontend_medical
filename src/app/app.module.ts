@@ -21,6 +21,7 @@ import {BlogPostComponent} from './blog/blog-post/blog-post.component';
 import {blogRouting} from './blog/blog.routing';
 import {BlogModule} from './blog/blog.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ScheduleComponent } from './schedule/schedule.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         MenuNavBarFrontendComponent,
         AboutComponent,
         BlogPostComponent,
+        ScheduleComponent,
 
     ],
     imports: [
